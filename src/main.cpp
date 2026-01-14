@@ -8,7 +8,7 @@
 #include <esp_partition.h>    // For finding partitions
 #include <esp_heap_caps.h>    // For PSRAM heap functions
 #include <esp_camera.h>       // For Camera support
-#include "gpio_pins.h"        // 引入腳位定義檔 (motorA_pwm_fwd, motor_stby, CAM_PIN_*)
+#include "esp32s3_gpio.h"        // 引入腳位定義檔 (motorA_pwm_fwd, motor_stby, CAM_PIN_*)
 
 // === 全域設定與連線狀態 ===
 // OTA & Web Services
@@ -688,7 +688,7 @@ void setup() {
 
   // X. PSRAM 外部記憶體檢查
   // **關鍵修復：移除 psramInit()，依賴核心初始化**
-  //psramTest(); 
+  psramTest(); 
   if (psramFound()) {
     Serial.println("✅ PSRAM detected and initialized!");
   } else {
